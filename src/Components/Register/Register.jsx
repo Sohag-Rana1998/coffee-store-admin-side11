@@ -1,19 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
 
 const Register = () => {
   const { createUser, updateUser, googleLogin, facebookLogin } =
     useContext(AuthContext);
-
-  const [allUser, setAllUser] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/users').then(data => {
-      console.log(data);
-      setAllUser(data.data);
-    });
-  }, []);
+  const allUser = useLoaderData();
+  console.log(allUser);
 
   const handleRegister = e => {
     e.preventDefault();

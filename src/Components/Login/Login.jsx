@@ -1,18 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
 
 const Login = () => {
   const { loginUser, googleLogin, facebookLogin } = useContext(AuthContext);
-  const [allUser, setAllUser] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/users').then(data => {
-      console.log(data);
-      setAllUser(data.data);
-    });
-  }, []);
-
+  const allUser = useLoaderData();
+  console.log(allUser);
   const handleLogin = e => {
     e.preventDefault();
 
@@ -20,8 +14,6 @@ const Login = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-
-    console.log(email, password);
 
     loginUser(email, password)
       .then(result => {
@@ -31,7 +23,7 @@ const Login = () => {
         const signInTime = user?.metadata?.lastSignInTime;
 
         const userData = { email, signInTime };
-        console.log(userData);
+
         fetch('http://localhost:5000/users', {
           method: 'PUT',
           headers: {

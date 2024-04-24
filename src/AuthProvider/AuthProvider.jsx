@@ -1,19 +1,19 @@
 import { createContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   updateProfile,
 } from 'firebase/auth';
-import app from '../../Firebase/firebase.config';
+
+import auth from '../../Firebase/firebase.config';
 export const AuthContext = createContext(null);
-export const auth = getAuth(app);
+
 const AuthProvider = ({ children }) => {
-  const auth = getAuth(app);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, [auth]);
+  }, []);
 
   const createUser = (name, email, password) => {
     return createUserWithEmailAndPassword(auth, name, email, password);
@@ -72,4 +72,7 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+AuthProvider.propTypes = {
+  children: PropTypes.node,
+};
 export default AuthProvider;

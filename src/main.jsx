@@ -41,10 +41,12 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login></Login>,
+        loader: () => fetch('http://localhost:5000/users'),
       },
       {
         path: '/register',
         element: <Register></Register>,
+        loader: () => fetch('http://localhost:5000/users'),
       },
       {
         path: '/users',
@@ -64,10 +66,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
         <RouterProvider router={router} />
-      </QueryClientProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

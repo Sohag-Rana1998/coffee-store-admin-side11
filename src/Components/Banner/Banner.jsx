@@ -1,4 +1,3 @@
-import { IoMdArrowRoundBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 const Banner = () => {
   return (
@@ -16,17 +15,17 @@ const Banner = () => {
           {' '}
           <Link to={'/'}>
             <button className="btn w-32 bg-[#E3B577] text-xl  flex items-center">
-              <IoMdArrowRoundBack></IoMdArrowRoundBack> Home
+              Home
             </button>
           </Link>
           <Link to={'/login'}>
-            <button className="btn w-32 bg-[#E3B577]">Login</button>
+            <button className="btn text-xl w-32 bg-[#E3B577]">Login</button>
           </Link>
           <Link to={'/register'}>
-            <button className="btn w-32 bg-[#E3B577]">Register</button>
+            <button className="btn text-xl w-32 bg-[#E3B577]">Register</button>
           </Link>
           <Link to={'/users'}>
-            <button className="btn w-32 bg-[#E3B577]">Users</button>
+            <button className="btn text-xl w-32 bg-[#E3B577]">Users</button>
           </Link>
         </div>
       </div>

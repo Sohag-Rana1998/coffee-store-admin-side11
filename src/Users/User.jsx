@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const User = () => {
-  const { data, isLoading, refetch } = useUserData();
+  const { data, refetch } = useUserData();
   console.log(data);
 
   const handleDelete = id => {
